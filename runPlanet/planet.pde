@@ -14,7 +14,7 @@ public class Planet extends Unit
     size=s;
   }
   
-  public void drawPlanet()
+  public void drawThis()
   {
     if(alive)
     {

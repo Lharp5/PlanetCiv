@@ -4,8 +4,7 @@
 */
 
 int time;
-Planet p[] = new Planet [1000];
-Ship s[] = new Ship [1000];
+Unit p[] = new Unit [10000];
 int amountOfPlanets=3;
 int numShips=0;
 
@@ -27,7 +26,7 @@ void draw()
   
   for(int i=0; i<amountOfPlanets; i++)
   {
-    p[i].drawPlanet();
+   p[i].drawThis();
   }  
   mouseTracker();
   time++;
@@ -83,7 +82,6 @@ public void mouseTracker()
   for(int i=0; i<amountOfPlanets; i++)
   {
     p[i].update(xval,yval);
-  }
-  
+  } 
   
 }

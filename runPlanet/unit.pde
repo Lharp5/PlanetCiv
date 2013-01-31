@@ -2,7 +2,7 @@
 *
 */
 
-public class Unit
+public abstract class Unit
 {
   int xpos, ypos;
   boolean alive;
@@ -18,4 +18,5 @@ public class Unit
     xpos+=updateX;
     ypos+=updateY;
   }
+  public abstract void drawThis();
 }
