@@ -11,7 +11,7 @@ int numShips=0;
 void setup()
 {
   time=0;
-  size(1000,750);
+  size(1000,650);
   background(0);
   p[0] = new MedPlanet(0, 0, true, 10, (int)random(40,60));
   p[1] = new LargePlanet(-width/2, -height/2, true, 10, (int)random(50,76));
