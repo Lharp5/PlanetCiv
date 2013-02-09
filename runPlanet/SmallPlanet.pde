@@ -10,4 +10,9 @@ public class SmallPlanet extends Planet
     size=size*2;
     resources*=resources*2;
   }
+  
+  public void drawThis(){
+    fill(0,0,255);
+    super.drawThis();
+  }
 }

@@ -11,4 +11,9 @@ public class LargePlanet extends Planet
     size=size*5;
     resources*=resources*5;
   }
+  
+  public void drawThis(){
+    fill(255,0,0);
+    super.drawThis();
+  }
 }

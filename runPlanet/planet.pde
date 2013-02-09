@@ -18,6 +18,13 @@ public class Planet extends Unit
   {
     if(alive)
     {
-      fill(255,0,0);
       ellipse(xpos,ypos,size,size);   
-    }    }}
+    }
+  }
+  
+  public void clickedOn(){
+    if(dist(mouseX,mouseY,xpos,ypos)<size/2){
+      System.out.println("this planet");
+    }
+  }
+}

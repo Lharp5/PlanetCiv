@@ -10,4 +10,9 @@ public class MedPlanet extends Planet
     size=size*3;
     resources*=resources*3;
   }
+  
+  public void drawThis(){
+    fill(0,255,0);
+    super.drawThis();
+  }
 }
