@@ -14,7 +14,7 @@ public class Ship extends Unit
     movY=ypos;
   }
   
-  public void drawThis()
+  public void update()
   {
     
     if(movX!=xpos||movY!=ypos){
@@ -30,10 +30,10 @@ public class Ship extends Unit
     ellipse(xpos,ypos,size/5,size/5);
   }
   
-  public void update(int updateX, int updateY){
+  public void change(int updateX, int updateY){
     movX+=updateX;
     movY+=updateY;
-    super.update(updateX,updateY);
+    super.change(updateX,updateY);
   }
   
   public void selectThis(){

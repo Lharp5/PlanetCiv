@@ -25,7 +25,7 @@ void draw()
   
   for(int i=0; i<numUnits; i++)
   {
-   p[i].drawThis();
+   p[i].update();
   }  
   mouseTracker();
   time++;
@@ -71,7 +71,7 @@ public void mouseTracker()
     yval=-speed;
   }
   for(int i=0; i<numUnits; i++)  {
-    p[i].update(xval,yval);
+    p[i].change(xval,yval);
   }  
 }
 

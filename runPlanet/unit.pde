@@ -16,7 +16,7 @@ public abstract class Unit
     selected=false;
   }
   
-  public void update(int updateX, int updateY)
+  public void change(int updateX, int updateY)
   {
     xpos+=updateX;
     ypos+=updateY;
@@ -28,6 +28,6 @@ public abstract class Unit
     alive=false;    
   }
   
-  public abstract void drawThis();
+  public abstract void update();
   
 }

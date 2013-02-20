@@ -11,8 +11,8 @@ public class MedPlanet extends Planet
     resources*=resources*3;
   }
   
-  public void drawThis(){
+  public void update(){
     fill(0,255,0);
-    super.drawThis();
+    super.update();
   }
 }
