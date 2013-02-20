@@ -71,12 +71,15 @@ public void mouseTracker()
     yval=-speed;
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
   for(int i=0; i<amountOfPlanets; i++)
   {
     p[i].change(xval,yval);
   } 
   
 =======
+=======
+>>>>>>> LukeChanges
   for(int i=0; i<numUnits; i++)  {
     p[i].change(xval,yval);
   }  
@@ -103,5 +106,8 @@ void mousePressed()
       }
     }
   }
+<<<<<<< HEAD
 >>>>>>> origin/LukeRecoveryA
+=======
+>>>>>>> LukeChanges
 }

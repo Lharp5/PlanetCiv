@@ -4,6 +4,7 @@ _________
 I am going to add tasks on Github For things to do.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Why would I?
 
 Color.Lerp(249, 82, 50, 0.7);
@@ -308,3 +309,8 @@ If you have any questions on the methods or anything lemmie know.
 
 I dont think we necessarily need artwork/music for the playtest just the functionality.
 >>>>>>> origin/LukeRecoveryA
+=======
+If you have any questions on the methods or anything lemmie know.
+
+I dont think we necessarily need artwork/music for the playtest just the functionality.
+>>>>>>> LukeChanges

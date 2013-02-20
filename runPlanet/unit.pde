@@ -28,10 +28,16 @@ public abstract class Unit
     alive=false;    
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
   public abstract void update();
 =======
   
   public abstract void update();
   
 >>>>>>> origin/LukeRecoveryA
+=======
+  
+  public abstract void update();
+  
+>>>>>>> LukeChanges
 }
