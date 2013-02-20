@@ -1,7 +1,8 @@
-THIS IS A TEST
+S.P.A.C.E
+_________
 
-Hello 
-=====
-I am updating this
+I am going to add tasks on Github For things to do.
 
-Why would I?
+If you have any questions on the methods or anything lemmie know.
+
+I dont think we necessarily need artwork/music for the playtest just the functionality.
