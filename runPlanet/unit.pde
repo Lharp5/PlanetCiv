@@ -4,19 +4,34 @@
 
 public abstract class Unit
 {
-  int xpos, ypos;
-  boolean alive;
-  public Unit(int xp, int yp, boolean a)
-  {
+  
+  protected int xpos, ypos;
+  protected boolean alive, selected;
+  
+  public Unit(int xp, int yp, boolean a)  
+{
     xpos =xp;
     ypos =yp;
     alive = a;
+    selected=false;
   }
   
   public void change(int updateX, int updateY)
   {
     xpos+=updateX;
     ypos+=updateY;
+  }  
+  
+  
+  public void die()
+  {
+    alive=false;    
   }
+<<<<<<< HEAD
   public abstract void update();
+=======
+  
+  public abstract void update();
+  
+>>>>>>> origin/LukeRecoveryA
 }
