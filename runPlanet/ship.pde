@@ -9,7 +9,7 @@ public class Ship extends Unit
     super(x,y,a);
   }
   
-  public void drawThis()
+  public void update()
   {
   }
 }
