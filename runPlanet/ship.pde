@@ -9,9 +9,9 @@ public class Ship extends Unit
  public Ship(int xp, int yp, boolean a, int s)
   {
     super(xp,yp,a);
-    size =s;
-    movX=xpos;
-    movY=ypos;
+    size = s;
+    movX = (int)xpos;
+    movY = (int)ypos;
   }
   
   public void update()
@@ -31,33 +31,30 @@ public class Ship extends Unit
   }
   
   public void change(int updateX, int updateY){
-    movX+=updateX;
-    movY+=updateY;
+    movX += updateX;
+    movY += updateY;
     super.change(updateX,updateY);
   }
   
   public void selectThis(){
     if(dist(mouseX,mouseY,xpos,ypos)<size/2)    {
-      selected=true;
-      movX=xpos;
-      movY=ypos;
+      selected = true;
+      movX = (int)xpos;
+      movY = (int)ypos;
     }
     else
       selected=false;
   }
   
   public void move(int mx, int my){     
-        movX=mx;
-        movY=my;
-        
-      if(movX>xpos)
-        xpos++;
-      if(movY>ypos)
-        ypos++;
-      if(movX<xpos)
-        xpos--;
-      if(movY<ypos)
-        ypos--;
+      movX=mx;
+      movY=my;
+      float difX = movX - xpos;
+      float difY = movY - ypos;
+      float xSpeed = difX / sqrt((difX * difX) + (difY * difY));
+      float ySpeed = difY / sqrt((difX * difX) + (difY * difY));
+      
+      xpos += xSpeed;
+      ypos += ySpeed;
   }
 }
-  
