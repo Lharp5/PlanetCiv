@@ -13,6 +13,7 @@ public class MedPlanet extends Planet
   
   public void update(){
     fill(0,255,0);
+    noStroke();
     super.update();
   }
 }
