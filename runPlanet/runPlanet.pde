@@ -30,16 +30,6 @@ void draw()
 {
   background(0);
   
-  fill(255, 255);
-  textSize(20);
-  text("x: " + p[3].getX(), 20, 20);
-  text("y: " + p[3].getY(), 20, 40);
-  text("bx1: " + boundingX1, 20, 60);
-  text("by1: " + boundingY1, 20, 80);
-  text("bx2: " + boundingX2, 20, 100);
-  text("by2: " + boundingY2, 20, 120);
-  
-  
   for(int i=0; i<numUnits; i++)
   {
    p[i].update();
