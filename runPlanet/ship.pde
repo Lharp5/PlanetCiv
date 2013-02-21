@@ -6,6 +6,7 @@ public class Ship extends Unit
 {
   protected int size;
   protected int movX,movY;
+  
  public Ship(int xp, int yp, boolean a, int s)
   {
     super(xp,yp,a);
@@ -25,8 +26,10 @@ public class Ship extends Unit
       fill(255);
     else      
       fill(150);
+    noStroke();
     ellipse(xpos,ypos,size,size);
     fill(255,0,0);
+    stroke(0, 255);
     ellipse(xpos,ypos,size/5,size/5);
   }
   
