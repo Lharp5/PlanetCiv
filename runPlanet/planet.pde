@@ -7,11 +7,13 @@ public class Planet extends Unit
 {  
   int resources;
   int size;
+  boolean menuDisplay;
   public Planet(int xp, int yp, boolean a, int r, int s)
   {
     super(xp,yp,a);
     resources=r;
     size=s;
+    menuDisplay=false;
   }
   
   public void update()
