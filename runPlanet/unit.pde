@@ -5,8 +5,11 @@
 public abstract class Unit
 {
   
-  protected int xpos, ypos;
+  protected float xpos, ypos;
   protected boolean alive, selected;
+  
+  public float getX() { return xpos; }
+  public float getY() { return ypos; }
   
   public Unit(int xp, int yp, boolean a)  
 {
