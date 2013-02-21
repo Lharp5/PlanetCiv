@@ -12,6 +12,7 @@ private int boundingX1 = 0;
 private int boundingX2 = 0;
 private int boundingY1 = 0;
 private int boundingY2 = 0;
+private boolean selectionBox = false;
 
 void setup()
 {
@@ -29,6 +30,16 @@ void draw()
 {
   background(0);
   
+  fill(255, 255);
+  textSize(20);
+  text("x: " + p[3].getX(), 20, 20);
+  text("y: " + p[3].getY(), 20, 40);
+  text("bx1: " + boundingX1, 20, 60);
+  text("by1: " + boundingY1, 20, 80);
+  text("bx2: " + boundingX2, 20, 100);
+  text("by2: " + boundingY2, 20, 120);
+  
+  
   for(int i=0; i<numUnits; i++)
   {
    p[i].update();
@@ -37,6 +48,13 @@ void draw()
     fill(255, 0);
     stroke(255, 255);
     rect(boundingX1, boundingY1, boundingX2 - boundingX1, boundingY2 - boundingY1);
+    int difX = boundingX2 - boundingX1;
+    int difY = boundingY2 - boundingY1;
+    if ((difX > 5 || difX < -5) || (difY > 5 || difY < -5)) {
+      selectionBox = true;
+    } else {
+      selectionBox = false;
+    }
   }
   mouseTracker();
   time++;
@@ -103,7 +121,7 @@ void mousePressed()
     }
     for(int i=0; i<numUnits; i++){
      if(p[i] instanceof Ship){
-      ((Ship) p[i]).selectThis();
+      ((Ship) p[i]).selectThis(selectionBox, false);
      } 
     }
     clicked = true;
@@ -124,7 +142,33 @@ void mousePressed()
 
 void mouseReleased()
 {
+  float objX;
+  float objY;
   if(mouseButton == LEFT) {
+    for (int i = 0; i < numUnits; i++) {
+      objX = p[i].getX();
+      objY = p[i].getY();
+      if (boundingX1 < objX && boundingX2 > objX && boundingY1 < objY && boundingY2 > objY) {
+        if (p[i] instanceof Ship) {
+          ((Ship)p[i]).selectThis(selectionBox, true);
+        }
+      }
+      else if (boundingX1 > objX && boundingX2 < objX && boundingY1 < objY && boundingY2 > objY) {
+        if (p[i] instanceof Ship) {
+          ((Ship)p[i]).selectThis(selectionBox, true);
+        }
+      }
+      else if (boundingX1 < objX && boundingX2 > objX && boundingY1 > objY && boundingY2 < objY) {
+        if (p[i] instanceof Ship) {
+          ((Ship)p[i]).selectThis(selectionBox, true);
+        }
+      }
+      else if (boundingX1 > objX && boundingX2 < objX && boundingY1 > objY && boundingY2 < objY) {
+        if (p[i] instanceof Ship) {
+          ((Ship)p[i]).selectThis(selectionBox, true);
+        }
+      }
+    }
     boundingX1 = 0;
     boundingX2 = 0;
     boundingY1 = 0;
