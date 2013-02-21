@@ -56,5 +56,12 @@ public class Ship extends Unit
       
       xpos += xSpeed;
       ypos += ySpeed;
+      
+      if (difX <= 1 && difX >= -1) {
+        xpos = movX;
+      }
+      if (difY <= 1 && difY >= -1) {
+        ypos = movY;
+      }
   }
 }
