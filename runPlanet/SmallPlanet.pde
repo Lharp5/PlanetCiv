@@ -13,6 +13,7 @@ public class SmallPlanet extends Planet
   
   public void update(){
     fill(0,0,255);
+    noStroke();
     super.update();
   }
 }
