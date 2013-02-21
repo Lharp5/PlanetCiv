@@ -7,6 +7,12 @@ int time;
 Unit p[] = new Unit [10000];
 int numUnits;
 
+private boolean clicked = false;
+private int boundingX1 = 0;
+private int boundingX2 = 0;
+private int boundingY1 = 0;
+private int boundingY2 = 0;
+
 void setup()
 {
   time=0;
@@ -26,7 +32,12 @@ void draw()
   for(int i=0; i<numUnits; i++)
   {
    p[i].update();
-  }  
+  }
+  if (clicked) {
+    fill(255, 0);
+    stroke(255, 255);
+    rect(boundingX1, boundingY1, boundingX2 - boundingX1, boundingY2 - boundingY1);
+  }
   mouseTracker();
   time++;
 }
@@ -37,6 +48,11 @@ public void mouseTracker()
   int mr=100; //mouseRange
   int xval=0;
   int yval=0;
+  
+  if (clicked) {
+    boundingX2 = mouseX;
+    boundingY2 = mouseY;
+  }
   
   if(mouseX<mr&&mouseY<mr)  {
     xval=speed;
@@ -78,14 +94,21 @@ public void mouseTracker()
 
 void mousePressed()
 {
-  if(mouseButton== LEFT){
+  if(mouseButton == LEFT){
+    if (!clicked) {
+      boundingX1 = mouseX;
+      boundingY1 = mouseY;
+      boundingX2 = mouseX;
+      boundingY2 = mouseY;
+    }
     for(int i=0; i<numUnits; i++){
      if(p[i] instanceof Ship){
       ((Ship) p[i]).selectThis();
      } 
     }
+    clicked = true;
   }
-  else if(mouseButton==RIGHT){
+  else if(mouseButton == RIGHT){
     for(int i=0; i<numUnits; i++){
       if(p[i] instanceof Planet){
         ((Planet) p[i]).clickedOn();
@@ -96,5 +119,16 @@ void mousePressed()
         }
       }
     }
+  }
+}
+
+void mouseReleased()
+{
+  if(mouseButton == LEFT) {
+    boundingX1 = 0;
+    boundingX2 = 0;
+    boundingY1 = 0;
+    boundingY2 = 0;
+    clicked = false;
   }
 }
