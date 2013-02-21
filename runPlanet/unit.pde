@@ -7,6 +7,7 @@ public abstract class Unit
   
   protected float xpos, ypos;
   protected boolean alive, selected;
+  public boolean menuDisplay;
   
   public float getX() { return xpos; }
   public float getY() { return ypos; }
@@ -17,6 +18,7 @@ public abstract class Unit
     ypos =yp;
     alive = a;
     selected=false;
+    menuDisplay=false;
   }
   
   public void change(int updateX, int updateY)
