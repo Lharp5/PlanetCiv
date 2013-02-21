@@ -110,6 +110,22 @@ public void mouseTracker()
   }  
 }
 
+public Boolean checkDestination(int mx, int my){
+  
+  for(int i=0; i<numUnits; i++)
+  {
+    if(p[i] instanceof Planet)
+    {
+     if(dist(mx,my,p[i].getX(), p[i].getY())<p[i].getSize()/2) 
+     {       
+       ((Planet) p[i]).populate();
+       return true;
+     } 
+    }
+  }
+  return false;
+}
+
 void mousePressed()
 {
   for(int i=0; i<numUnits; i++)  {
@@ -133,14 +149,16 @@ void mousePressed()
            
           clicked = true;
         }
-        else if(mouseButton == RIGHT){
-            if(p[i] instanceof Planet){
-              ((Planet) p[i]).clickedOn();
-            }
-            else if(p[i] instanceof Ship){
+        else if(mouseButton == RIGHT){            
+            if(p[i] instanceof Ship){
               if(p[i].selected){
+                if(checkDestination(mouseX,mouseY))
+                  ((Ship) p[i]).dock();
                 ((Ship) p[i]).move(mouseX,mouseY);
               }
+            }
+            else if(p[i] instanceof Planet){
+              ((Planet) p[i]).clickedOn();
             }
         }
     }

@@ -4,15 +4,18 @@
 
 public class Ship extends Unit
 {
-  protected int size;
   protected int movX,movY;
+  protected boolean endDestination;
   
+ public void dock(){endDestination = true;}
+ 
  public Ship(int xp, int yp, boolean a, int s)
   {
-    super(xp,yp,a);
+    super(xp,yp,a,s);
     size = s;
     movX = (int)xpos;
     movY = (int)ypos;
+    endDestination=false;
   }
   
   public void update()
@@ -21,16 +24,20 @@ public class Ship extends Unit
     if(movX!=xpos||movY!=ypos){
       move(movX,movY);
       }
+    else if(endDestination &&(movX==xpos&&movY==ypos))
+      die();
       
-    if(selected)      
-      fill(255);
-    else      
-      fill(150);
-    noStroke();
-    ellipse(xpos,ypos,size,size);
-    fill(255,0,0);
-    stroke(0, 255);
-    ellipse(xpos,ypos,size/5,size/5);
+    if(alive){
+      if(selected)      
+        fill(255);
+      else      
+        fill(150);
+      noStroke();
+      ellipse(xpos,ypos,size,size);
+      fill(255,0,0);
+      stroke(0, 255);
+      ellipse(xpos,ypos,size/5,size/5);
+    }
   }
   
   public void change(int updateX, int updateY){

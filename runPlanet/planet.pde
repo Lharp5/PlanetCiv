@@ -11,15 +11,13 @@ public class Planet extends Unit
   
   protected int city, defenses, research;
   protected int resources;
-  protected int size;
   
   protected boolean populated;
   
   public Planet(int xp, int yp, boolean a, int r, int s)
   {
-    super(xp,yp,a);
+    super(xp,yp,a,s);
     resources=r;
-    size=s;
     
     populated=false;
     city=0;
@@ -31,12 +29,18 @@ public class Planet extends Unit
   {
     if(alive)
     {
-      ellipse(xpos,ypos,size,size);   
+      ellipse(xpos,ypos,size,size);
     }
     if(menuDisplay){
       displayMenu();
     }
   }
+  
+  
+  public void populate(){
+    if(!populated)
+      populated=true;
+}
   
   public void clickedOn(){
     if(dist(mouseX,mouseY,xpos,ypos)<size/2){
@@ -44,8 +48,10 @@ public class Planet extends Unit
     }
   }
   public void displayMenu(){
-    menuDisplay=true;
-    fill(255);
-    rect(100,100, width-200,height-200);
+    if(populated){
+      menuDisplay=true;
+      fill(255);
+      rect(100,100, width-200,height-200);
+    }
   }
 }
