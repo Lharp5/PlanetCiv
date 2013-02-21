@@ -14,6 +14,7 @@ public class LargePlanet extends Planet
   
   public void update(){
     fill(255,0,0);
+    noStroke();
     super.update();
   }
 }
