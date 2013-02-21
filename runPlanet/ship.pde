@@ -39,14 +39,25 @@ public class Ship extends Unit
     super.change(updateX,updateY);
   }
   
-  public void selectThis(){
-    if(dist(mouseX,mouseY,xpos,ypos)<size/2)    {
-      selected = true;
-      movX = (int)xpos;
-      movY = (int)ypos;
+  public void selectThis(boolean sBox, boolean cap){
+    if (!sBox) {
+      if(dist(mouseX,mouseY,xpos,ypos)<size/2)    {
+        selected = true;
+        movX = (int)xpos;
+        movY = (int)ypos;
+      }
+      else
+        selected=false;
     }
-    else
-      selected=false;
+    else {
+      if (cap) {
+        selected = true;
+        movY = (int)xpos;
+        movY = (int)ypos;
+      } else {
+        selected = false;
+      }
+    }
   }
   
   public void move(int mx, int my){     
