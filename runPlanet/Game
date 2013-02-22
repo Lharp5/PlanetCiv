@@ -137,7 +137,8 @@ void mousePressed() {
       else if (mouseButton == RIGHT) {                        
         if (p[i] instanceof Ship) {              
           if (p[i].selected) {                
-            if (checkDestination(mouseX, mouseY))                  ((Ship) p[i]).dock();                
+            if (checkDestination(mouseX, mouseY))                  
+            ((Ship) p[i]).dock();                
             ((Ship) p[i]).move(mouseX, mouseY);
           }
         }            
@@ -148,7 +149,10 @@ void mousePressed() {
     }
   }
 }
-void mouseReleased() {  
+
+void mouseReleased() 
+
+{  
   float objX;  
   float objY;  
   if (mouseButton == LEFT) {    
