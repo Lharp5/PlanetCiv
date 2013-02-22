@@ -30,6 +30,7 @@ void draw()
 {
   background(0);
   
+  /*
   fill(255, 255);
   textSize(20);
   text("x: " + p[3].getX(), 20, 20);
@@ -38,7 +39,7 @@ void draw()
   text("by1: " + boundingY1, 20, 80);
   text("bx2: " + boundingX2, 20, 100);
   text("by2: " + boundingY2, 20, 120);
-  
+  */
   
   for(int i=0; i<numUnits; i++)
   {
@@ -54,6 +55,13 @@ void draw()
       selectionBox = true;
     } else {
       selectionBox = false;
+    }
+  }
+  for (int i = 0; i < numUnits; i++) {
+    if (p[i] instanceof Planet) {
+      if(p[i].menuDisplay){
+        ((Planet)p[i]).displayMenu();
+      }
     }
   }
   mouseTracker();
