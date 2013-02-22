@@ -1,3 +1,6 @@
+// By Jacob Dyck
+
+
 int time;
 Unit p[] = new Unit [10000];
 int numUnits;
