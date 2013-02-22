@@ -1,5 +1,7 @@
 // By Jacob Dyck
 
+public class Game(){
+
 
 int time;
 Unit p[] = new Unit [10000];
@@ -186,4 +188,5 @@ void mouseReleased()
     boundingY2 = 0;    
     clicked = false;
   }
+}
 }
