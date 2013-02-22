@@ -67,24 +67,46 @@ public class Planet extends Unit
       fill(0);
       textSize(30);
       text("Planet " + planetNum, width / 2 - 85, 95);
-      text("Info",  135, 155);
+      text("Civilization Progress",  135, 155);
       text("Upgrade", (width / 2) + 25, 155);
+      text("Planet Info",  135, (height / 2) + 45);
+      text("Dispatch", (width / 2) + 25, (height / 2) + 45);
       textSize(26);
       
+      //buttons
+      stroke(0);
+      fill(230);
+      rect((width / 2) + 280, 175, 75, 30);
+      rect((width / 2) + 280, 210, 75, 30);
+      rect((width / 2) + 280, 245, 75, 30);
+      rect((width / 2) + 280, (height / 2) + 65, 75, 30);
+      rect((width / 2) + 280, (height / 2) + 100, 75, 30);
+      
+      fill(0);
+      //civilization info
       text("City: " + CITY_LIST[city], 130, 200);
       text("Defenses: " + DEFENSE_LIST[defenses], 130, 235);
       text("Research: " + RESEARCH_LIST[research], 130, 270);
       
-      text("City", (width / 2) + 20, 200);
-      text("Defenses", (width / 2) + 20, 235);
-      text("Research", (width / 2) + 20, 270);
-      // I want to put 3 corresponding buttons next to these.
+      //upgrades
+      text("City..........................", (width / 2) + 20, 200);
+      text("Defenses..................", (width / 2) + 20, 235);
+      text("Research..................", (width / 2) + 20, 270);
       
-      //health decay resources
+      //planet info
+      text("Planet Decay: N/A", 130, (height / 2) + 90);
+      text("Resource Rate: N/A", 130, (height / 2) + 125);
       
       //recruit ships
+      text("Ship 1......................", (width / 2) + 20, (height / 2) + 90);
+      text("Ship 2......................", (width / 2) + 20, (height / 2) + 125);
       
-      //les chiassons
+      //prices
+      text("Price", (width / 2) + 285, 200);
+      text("Price", (width / 2) + 285, 235);
+      text("Price", (width / 2) + 285, 270);
+      text("Price", (width / 2) + 285, (height / 2) + 90);
+      text("Price", (width / 2) + 285, (height / 2) + 125);
     }
   }
 }
