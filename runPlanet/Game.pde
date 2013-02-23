@@ -1,3 +1,5 @@
+//by Jacob Dyck
+
 public class Game{
   int time;
   
