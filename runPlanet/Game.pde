@@ -74,39 +74,39 @@ public class Game{
               }    
               if (mouseX<mr&&mouseY<mr) {    
                     xval=speed;    
-                        yval=speed;
+                    yval=speed;
               }  
-                  else if (mouseX<mr&&mouseY>height-mr) {    
-                        xval=1;    
-                            yval=-speed;
-                  }  
-                    else if (mouseX>width-mr&&mouseY<mr) {    
-                          xval=-speed;    
-                              yval=speed;
-                    }  
-                      else if (mouseX>width-mr&&mouseY>height-mr) {    
-                            xval=-speed;    
-                                yval=-speed;
-                      }    
-                        else if (mouseX<50&&(mouseY>50&&mouseY<height-50)) {    
-                              xval=speed;    
-                                  yval=0;
-                        }  
-                          else if (mouseX>width-50&&(mouseY>50&&mouseY<height-50)) {    
-                                xval=-speed;    
-                                    yval=0;
-                          }  
-                            else if ((mouseX>50&&mouseX<width-50)&&mouseY<50) {    
-                                  xval=0;    
-                                      yval=speed;
-                            }  
-                              else if ((mouseX>50&&mouseX<width-50)&&mouseY>height-50) {    
-                                    xval=0;    
-                                        yval=-speed;
-                              }    
-                                for (int i=0; i<numUnits; i++) {    
-                                      p[i].change(xval, yval);
-                                }
+              else if (mouseX<mr&&mouseY>height-mr) {    
+                    xval=1;    
+                    yval=-speed;
+              }  
+              else if (mouseX>width-mr&&mouseY<mr) {    
+                    xval=-speed;    
+                    yval=speed;
+              }  
+              else if (mouseX>width-mr&&mouseY>height-mr) {    
+                    xval=-speed;    
+                    yval=-speed;
+              }    
+              else if (mouseX<50&&(mouseY>50&&mouseY<height-50)) {    
+                    xval=speed;    
+                    yval=0;
+              }  
+              else if (mouseX>width-50&&(mouseY>50&&mouseY<height-50)) {    
+                    xval=-speed;    
+                    yval=0;
+              }  
+              else if ((mouseX>50&&mouseX<width-50)&&mouseY<50) {    
+                    xval=0;    
+                    yval=speed;
+              }  
+              else if ((mouseX>50&&mouseX<width-50)&&mouseY>height-50) {    
+                    xval=0;    
+                    yval=-speed;
+              }    
+           for (int i=0; i<numUnits; i++) {    
+                p[i].change(xval, yval);
+        }
   }
   public Boolean checkDestination(int mx, int my) {    
       for (int i=0; i<numUnits; i++) {    
