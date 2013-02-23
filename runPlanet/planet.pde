@@ -13,6 +13,8 @@ public class Planet extends Unit
   
   protected int city, defenses, research;
   protected int resources;
+  protected int decay;
+  protected int population; //need a menu display for this
   
   protected boolean populated;
   
@@ -27,6 +29,8 @@ public class Planet extends Unit
     city=0;
     defenses=0;
     research=0;
+    decay=0;
+    population=0;
   }
   
   public void update()
@@ -94,8 +98,8 @@ public class Planet extends Unit
       text("Research..................", (width / 2) + 20, 270);
       
       //planet info
-      text("Planet Decay: N/A", 130, (height / 2) + 90);
-      text("Resource Rate: N/A", 130, (height / 2) + 125);
+      text("Planet Decay: "+decay+"%", 130, (height / 2) + 90);
+      text("Resource Rate: "+resources, 130, (height / 2) + 125);
       
       //recruit ships
       text("Ship 1......................", (width / 2) + 20, (height / 2) + 90);
