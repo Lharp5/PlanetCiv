@@ -9,7 +9,7 @@ public class Ship extends Unit
   
  public void dock(){endDestination = true;}
  
- public Ship(int xp, int yp, boolean a, int s)
+ public Ship(float xp, float yp, boolean a, int s)
   {
     super(xp,yp,a,s);
     size = s;

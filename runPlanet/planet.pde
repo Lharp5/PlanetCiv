@@ -19,13 +19,14 @@ public class Planet extends Unit
   protected int city, defenses, research;
   protected int resources;
   protected int decay;
-  protected int population; //need a menu display for this
+  protected int population; //need a menu display for this  
   
   protected boolean populated;
+  public boolean isPopulated(){ return populated;}
   
   protected int planetNum;
   
-  public Planet(int xp, int yp, boolean a, int r, int s)
+  public Planet(float xp, float yp, boolean a, int r, int s)
   {
     super(xp,yp,a,s);
     resources=r;
@@ -56,33 +57,36 @@ public class Planet extends Unit
 }
 
 public int buildCity(int r){
-  if(r>=CITY_PRICE[city]&&city<CITY_LIST.length){
-    return r-=CITY_PRICE[city];
+  int c=city;
+  if(r>=CITY_PRICE[city]&&city<CITY_LIST.length-1){    
     city++;
+    return r-=CITY_PRICE[c];
+    
   }
   else
     return r;
-  }
 }
 
 public int buildDefense(int r){
-  if(r>=DEFENSE_PRICE[defenses]&&defenses<DEFENSE_LIST.length){
-    return r-=DEFENSE_PRICE[defenses];
-    defense++;
+  int d=defenses;
+  if(r>=DEFENSE_PRICE[defenses]&&defenses<DEFENSE_LIST.length-1){
+    defenses++;
+    return r-=DEFENSE_PRICE[d];
+    
   }
   else
     return r;
-  }
 }
 
 public int buildResearch(int r){
-  if(r>=RESEARCH_PRICE[research]&&city<RESEARCH_LIST.length){
-    return r-=RESEARCH_PRICE[research];
+  int re=research;
+  if(r>=RESEARCH_PRICE[research]&&research<RESEARCH_LIST.length-1){
     research++;
+    return r-=RESEARCH_PRICE[re];
+    
   }
   else
     return r;
-  }
 }
 
 

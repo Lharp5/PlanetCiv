@@ -4,7 +4,7 @@
 
 public class SmallPlanet extends Planet
 {  
-  SmallPlanet(int xp, int yp, boolean a, int r, int s)
+  SmallPlanet(float xp, float yp, boolean a, int r, int s)
   {
     super(xp,yp,a,r,s);
     size=size*2;

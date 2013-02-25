@@ -39,18 +39,18 @@ void mousePressed()
   for(int i=0; i<g.numUnits; i++)  {
     if(g.p[i].menuDisplay){
       if(mouseButton == LEFT){
-        if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //buildCity button
-          g.resources=buildCity(g.resources);
-        else if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //buildDefenses button
-          g.resources=buildDefense(g.resources);
-        else if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //buildResearch button
-          g.resources=buildResearch(g.resources);
+        if((mouseX>(width / 2) + 280 &&mouseX<(width / 2) + 355)&&(mouseY>175&&mouseY<205)) //buildCity button
+          g.resources=((Planet)g.p[i]).buildCity(g.resources);
+        else if((mouseX>(width / 2) + 280 &&mouseX<(width / 2) + 355)&&(mouseY>210&&mouseY<240)) //buildDefenses button
+          g.resources=((Planet)g.p[i]).buildDefense(g.resources);
+        else if((mouseX>(width / 2) + 280 &&mouseX<(width / 2) + 355)&&(mouseY>245&&mouseY<275)) //buildResearch button
+          g.resources=((Planet)g.p[i]).buildResearch(g.resources);
           
-        else if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //SettleShip button
-          g.resources=buildCity(g.resources);
-        /*else if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //ExploreShip button
+        else if((mouseX>(width / 2) + 280 &&mouseX<(width / 2) + 355)&&(mouseY>(height / 2) + 65&&mouseY<(height / 2) + 95)) //SettleShip button
+          g.recruitSettler(g.p[i].getX() + g.p[i].getSize()+30,g.p[i].getY());
+        /*else if((mouseX>(width / 2) + 280 &&mouseX<(width / 2) + 355)&&(mouseY>(height / 2) + 100 &&mouseY<(height / 2) + 130)) //ExploreShip button
           g.resources=buildCity(g.resources);*/
-          
+      }
           
       else if(mouseButton == RIGHT) //right click closes the menu
         g.p[i].menuDisplay=false;

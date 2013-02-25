@@ -28,6 +28,7 @@ public class Game{
   final int MMAX = 50;
   final int LMIN = 51;
   final int LMAX = 76;
+  final int SHIP_SIZE=25;
   
   
   public Game(){
@@ -36,13 +37,13 @@ public class Game{
     p[0] = new MedPlanet(0, 0, true, 10, (int)random(MMIN, MMAX));  
     p[1] = new LargePlanet(-width/2, -height/2, true, 10, (int)random(LMIN, LMAX));  
     p[2] = new SmallPlanet(width/2, height/2, true, 10, (int)random(SMIN, SMAX));  
-    p[3] = new Ship(width, height, true, 25);
+    p[3] = new Ship(width, height, true, SHIP_SIZE);
     p[4] = new SmallPlanet(-width,-height, true, 10, (int)random(SMIN,SMAX));
-    p[5] = new Ship(width+150,height+150,true,25);
+    p[5] = new Ship(width+150,height+150,true,SHIP_SIZE);
     numUnits=6;
     
     ///resource recruitment testing
-    resources+=50000;
+    resources+=500000;
   }
   
   public void gameUpdate() {  
@@ -140,7 +141,7 @@ public class Game{
 }
   }
   
-  public void recruitSettler(int x, int y){
+  public void recruitSettler(float x, float y){
     if(resources>SETTLER_COST){
       resources-=SETTLER_COST;
       p[numUnits] = new Ship(x,y,true, 25);
@@ -163,9 +164,13 @@ public class Game{
   public Boolean checkDestination(int mx, int my) {    
       for (int i=0; i<numUnits; i++) {    
             if (p[i] instanceof Planet) {     
-                    if (dist(mx, my, p[i].getX(), p[i].getY())<p[i].getSize()/2) {            
+                    if (dist(mx, my, p[i].getX(), p[i].getY())<p[i].getSize()/2) {
+                        if(((Planet)p[i]).isPopulated())
+                          return false;
+                        else{            
                               ((Planet) p[i]).populate();       
                                       return true;
+                        }
                     }
             }
       }  

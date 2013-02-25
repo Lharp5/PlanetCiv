@@ -16,7 +16,7 @@ public abstract class Unit
   public int getSize() { return size; }
   public boolean isAlive() {return alive; }
   
-  public Unit(int xp, int yp, boolean a, int s)  
+  public Unit(float xp, float yp, boolean a, int s)  
 {
     xpos =xp;
     ypos =yp;
