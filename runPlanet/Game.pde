@@ -1,3 +1,6 @@
+/*
+* Game client is used for assembling the game and running all the functions for the player and overall game view.
+*/
 //by Jacob Dyck
 
 public class Game{
@@ -29,17 +32,7 @@ public class Game{
   }
   
   public void gameUpdate() {  
-      background(0);    
-        
-      /*  fill(255, 255); 
-      textSize(20);  
-      text("x: " + p[3].getX(), 20, 20);  
-      text("y: " + p[3].getY(), 20, 40);  
-      text("bx1: " + boundingX1, 20, 60);  
-      text("by1: " + boundingY1, 20, 80);  
-      text("bx2: " + boundingX2, 20, 100);  
-      text("by2: " + boundingY2, 20, 120);  
-      */
+    background(0);   
                             
     for (int i=0; i<numUnits; i++) {   
     p[i].update();
@@ -72,52 +65,55 @@ public class Game{
       mouseTracker();  
       time++;
   }
+  
+  //this is for movement of the field of view.
   public void mouseTracker() {  
       int speed =3;  
       int mr=100;   
       int xval=0;  
       int yval=0;    
-              if (clicked) {    
-                    boundingX2 = mouseX;    
-                        boundingY2 = mouseY;
-              }    
-              if (mouseX<mr&&mouseY<mr) {    
-                    xval=speed;    
-                    yval=speed;
-              }  
-              else if (mouseX<mr&&mouseY>height-mr) {    
-                    xval=1;    
-                    yval=-speed;
-              }  
-              else if (mouseX>width-mr&&mouseY<mr) {    
-                    xval=-speed;    
-                    yval=speed;
-              }  
-              else if (mouseX>width-mr&&mouseY>height-mr) {    
-                    xval=-speed;    
-                    yval=-speed;
-              }    
-              else if (mouseX<50&&(mouseY>50&&mouseY<height-50)) {    
-                    xval=speed;    
-                    yval=0;
-              }  
-              else if (mouseX>width-50&&(mouseY>50&&mouseY<height-50)) {    
-                    xval=-speed;    
-                    yval=0;
-              }  
-              else if ((mouseX>50&&mouseX<width-50)&&mouseY<50) {    
-                    xval=0;    
-                    yval=speed;
-              }  
-              else if ((mouseX>50&&mouseX<width-50)&&mouseY>height-50) {    
-                    xval=0;    
-                    yval=-speed;
-              }    
-           for (int i=0; i<numUnits; i++) {    
-                p[i].change(xval, yval);
-        }
+      if (clicked) {    
+            boundingX2 = mouseX;    
+            boundingY2 = mouseY;
+      }    
+      if (mouseX<mr&&mouseY<mr) {    
+            xval=speed;    
+            yval=speed;
+      }  
+      else if (mouseX<mr&&mouseY>height-mr) {    
+            xval=1;    
+            yval=-speed;
+      }  
+      else if (mouseX>width-mr&&mouseY<mr) {    
+            xval=-speed;    
+            yval=speed;
+      }  
+      else if (mouseX>width-mr&&mouseY>height-mr) {    
+            xval=-speed;    
+            yval=-speed;
+      }    
+      else if (mouseX<50&&(mouseY>50&&mouseY<height-50)) {    
+            xval=speed;    
+            yval=0;
+      }  
+      else if (mouseX>width-50&&(mouseY>50&&mouseY<height-50)) {    
+            xval=-speed;    
+            yval=0;
+      }  
+      else if ((mouseX>50&&mouseX<width-50)&&mouseY<50) {    
+            xval=0;    
+            yval=speed;
+      }  
+      else if ((mouseX>50&&mouseX<width-50)&&mouseY>height-50) {    
+            xval=0;    
+            yval=-speed;
+      }    
+   for (int i=0; i<numUnits; i++) {    
+        p[i].change(xval, yval);
+}
   }
   
+  //this is used to populate planets.
   public Boolean checkDestination(int mx, int my) {    
       for (int i=0; i<numUnits; i++) {    
             if (p[i] instanceof Planet) {     
