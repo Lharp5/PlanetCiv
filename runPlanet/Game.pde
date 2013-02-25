@@ -19,8 +19,7 @@ public class Game{
   
   
   public Game(){
-    time=0;  
-    size(1000, 650);  
+    time=0;
     background(0);  
     p[0] = new MedPlanet(0, 0, true, 10, (int)random(40, 60));  
     p[1] = new LargePlanet(-width/2, -height/2, true, 10, (int)random(50, 76));  
@@ -29,7 +28,7 @@ public class Game{
     numUnits=4;
   }
   
-  void gameUpdate() {  
+  public void gameUpdate() {  
       background(0);    
         
       /*  fill(255, 255); 
