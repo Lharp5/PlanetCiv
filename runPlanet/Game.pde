@@ -1,7 +1,7 @@
 //by Jacob Dyck
 
 public class Game{
-  int time;
+  public int time;
   
   public Unit p[] = new Unit [10000];
   int numUnits;
