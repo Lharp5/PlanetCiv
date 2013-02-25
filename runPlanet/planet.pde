@@ -58,6 +58,7 @@ public class Planet extends Unit
   public void displayMenu(){
     if(populated){
       menuDisplay=true;
+      textAlign(LEFT);
       noStroke();
       fill(255);
       rect(100,50, width-200,height-150);
