@@ -37,13 +37,12 @@ public class Game{
     p[0] = new MedPlanet(0, 0, true, 10, (int)random(MMIN, MMAX));  
     p[1] = new LargePlanet(-width/2, -height/2, true, 10, (int)random(LMIN, LMAX));  
     p[2] = new SmallPlanet(width/2, height/2, true, 10, (int)random(SMIN, SMAX));  
-    p[3] = new Ship(width, height, true, SHIP_SIZE);
+    p[3] = new Ship(width/1.5, height/1.5, true, SHIP_SIZE);
     p[4] = new SmallPlanet(-width,-height, true, 10, (int)random(SMIN,SMAX));
-    p[5] = new Ship(width+150,height+150,true,SHIP_SIZE);
-    numUnits=6;
+    numUnits=5;
     
     ///resource recruitment testing
-    resources+=500000;
+    resources=0;
   }
   
   public void gameUpdate() {  
@@ -52,6 +51,12 @@ public class Game{
     //looping to update game visuals                 
     for (int i=0; i<numUnits; i++) {
     p[i].update();
+    if(p[i] instanceof Planet){
+      if(((Planet) p[i]).isPopulated()){
+        if(time%300==0)
+          resources+=((Planet) p[i]).getResources();
+      }
+    }
     }
     
     //looping to update array of objects, cycling out dead ones

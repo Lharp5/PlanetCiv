@@ -23,6 +23,7 @@ public class Planet extends Unit
   
   protected boolean populated;
   public boolean isPopulated(){ return populated;}
+  public int getResources() {return resources; }
   
   protected int planetNum;
   
@@ -60,6 +61,7 @@ public int buildCity(int r){
   int c=city;
   if(r>=CITY_PRICE[city]&&city<CITY_LIST.length-1){    
     city++;
+    resources*=1.5;
     return r-=CITY_PRICE[c];
     
   }
