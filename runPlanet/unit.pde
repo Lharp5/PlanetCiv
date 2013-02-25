@@ -14,6 +14,7 @@ public abstract class Unit
   public float getX() { return xpos; }
   public float getY() { return ypos; }
   public int getSize() { return size; }
+  public boolean isAlive() {return alive; }
   
   public Unit(int xp, int yp, boolean a, int s)  
 {

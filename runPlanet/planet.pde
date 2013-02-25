@@ -11,6 +11,11 @@ public class Planet extends Unit
   protected final String [] DEFENSE_LIST = {"none","Quake Resister"," Asteroid Inteceptor","Quake Stabalizer","Atmospheric Shield"};
   protected final String [] RESEARCH_LIST = {"none","Greenhouse","Laser Tools","Renewable Energy","Chemical Restructuring"};
   
+  //following will be adjustable in each individual planet class eventually.
+  protected final int [] CITY_PRICE = {10000,25000,50000,100000,0};
+  protected final int [] DEFENSE_PRICE = {2000,5000,11000,20000,0};
+  protected final int [] RESEARCH_PRICE = {5000,15000,30000,75000,0};
+  
   protected int city, defenses, research;
   protected int resources;
   protected int decay;
@@ -49,7 +54,38 @@ public class Planet extends Unit
       PLANET_NUMBER ++;
     }
 }
-  
+
+public int buildCity(int r){
+  if(r>=CITY_PRICE[city]&&city<CITY_LIST.length){
+    return r-=CITY_PRICE[city];
+    city++;
+  }
+  else
+    return r;
+  }
+}
+
+public int buildDefense(int r){
+  if(r>=DEFENSE_PRICE[defenses]&&defenses<DEFENSE_LIST.length){
+    return r-=DEFENSE_PRICE[defenses];
+    defense++;
+  }
+  else
+    return r;
+  }
+}
+
+public int buildResearch(int r){
+  if(r>=RESEARCH_PRICE[research]&&city<RESEARCH_LIST.length){
+    return r-=RESEARCH_PRICE[research];
+    research++;
+  }
+  else
+    return r;
+  }
+}
+
+
   public void clickedOn(){
     if(dist(mouseX,mouseY,xpos,ypos)<size/2){
       displayMenu();
@@ -81,11 +117,11 @@ public class Planet extends Unit
       //buttons
       stroke(0);
       fill(230);
-      rect((width / 2) + 280, 175, 75, 30);
-      rect((width / 2) + 280, 210, 75, 30);
-      rect((width / 2) + 280, 245, 75, 30);
-      rect((width / 2) + 280, (height / 2) + 65, 75, 30);
-      rect((width / 2) + 280, (height / 2) + 100, 75, 30);
+      rect((width / 2) + 280, 175, 75, 30); //city
+      rect((width / 2) + 280, 210, 75, 30); // defense
+      rect((width / 2) + 280, 245, 75, 30); //research
+      rect((width / 2) + 280, (height / 2) + 65, 75, 30); //ship 1
+      rect((width / 2) + 280, (height / 2) + 100, 75, 30); //ship 2
       
       fill(0);
       //civilization info
@@ -103,15 +139,15 @@ public class Planet extends Unit
       text("Resource Rate: "+resources, 130, (height / 2) + 125);
       
       //recruit ships
-      text("Ship 1......................", (width / 2) + 20, (height / 2) + 90);
-      text("Ship 2......................", (width / 2) + 20, (height / 2) + 125);
+      text("Settler Ship.........", (width / 2) + 20, (height / 2) + 90);
+      text("Explorer Ship......", (width / 2) + 20, (height / 2) + 125);
       
       //prices
-      text("Price", (width / 2) + 285, 200);
-      text("Price", (width / 2) + 285, 235);
-      text("Price", (width / 2) + 285, 270);
-      text("Price", (width / 2) + 285, (height / 2) + 90);
-      text("Price", (width / 2) + 285, (height / 2) + 125);
+      text(CITY_PRICE[city], (width / 2) + 285, 200);
+      text(DEFENSE_PRICE[defenses], (width / 2) + 285, 235);
+      text(RESEARCH_PRICE[research], (width / 2) + 285, 270);
+      text("2000", (width / 2) + 285, (height / 2) + 90);
+      text("1000", (width / 2) + 285, (height / 2) + 125);
     }
   }
 }

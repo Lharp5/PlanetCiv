@@ -10,6 +10,7 @@ Unit p[] = new Unit [10000];
 int numUnits;
 */
 
+
 private int boundingX1 = 0;
 private int boundingX2 = 0;
 private int boundingY1 = 0;
@@ -37,8 +38,20 @@ void mousePressed()
 {
   for(int i=0; i<g.numUnits; i++)  {
     if(g.p[i].menuDisplay){
-      if(mouseButton == LEFT)
-        println("This is for interacting with menu");
+      if(mouseButton == LEFT){
+        if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //buildCity button
+          g.resources=buildCity(g.resources);
+        else if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //buildDefenses button
+          g.resources=buildDefense(g.resources);
+        else if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //buildResearch button
+          g.resources=buildResearch(g.resources);
+          
+        else if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //SettleShip button
+          g.resources=buildCity(g.resources);
+        /*else if((mouseX>...&&mouseX<...)&&(mouseY>...&&mouseY<..)) //ExploreShip button
+          g.resources=buildCity(g.resources);*/
+          
+          
       else if(mouseButton == RIGHT) //right click closes the menu
         g.p[i].menuDisplay=false;
     }
