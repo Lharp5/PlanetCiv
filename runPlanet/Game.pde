@@ -3,14 +3,17 @@
 public class Game{
   int time;
   
-  Unit p[] = new Unit [10000];
+  public Unit p[] = new Unit [10000];
   int numUnits;
   private boolean clicked = false;
   private int boundingX1 = 0;
   private int boundingX2 = 0;
   private int boundingY1 = 0;
   private int boundingY2 = 0;
-  private boolean selectionBox = false
+  private boolean selectionBox = false;
+  
+  private int resources; //total resources the player has
+  final int SETTLER_COST = 1000;
   
   
   public Game(){
@@ -108,6 +111,7 @@ public class Game{
                 p[i].change(xval, yval);
         }
   }
+  
   public Boolean checkDestination(int mx, int my) {    
       for (int i=0; i<numUnits; i++) {    
             if (p[i] instanceof Planet) {     
