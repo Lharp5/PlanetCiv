@@ -11,6 +11,8 @@ public class Game{
   private int boundingY1 = 0;
   private int boundingY2 = 0;
   private boolean selectionBox = false;
+
+  HeadsUpDisplay hud = new HeadsUpDisplay();
   
   private int resources; //total resources the player has
   final int SETTLER_COST = 1000;
@@ -62,7 +64,12 @@ public class Game{
                                         ((Planet)p[i]).displayMenu();
                     }
                 }
-          }  
+          }
+          
+          
+      // this should always go last.
+      hud.update(time, resources);
+  
       mouseTracker();  
       time++;
   }
