@@ -132,7 +132,7 @@ public class Game{
     for(int i=0; i<numUnits; i++){
        if((p[i] instanceof Planet) &&((Planet) p[i]).getPlanetNum()==thisPlanet){
          resources-=((Planet)p[i]).asteroidDamage();
-         hud.eventStatus = "Planet: "+((Planet)p[i]).getPlanetNum() + " Has been hit by an Asteroid";
+         hud.eventStatus = "Planet "+((Planet)p[i]).getPlanetNum() + " Has been hit by an Asteroid";
        }
     }
   }
