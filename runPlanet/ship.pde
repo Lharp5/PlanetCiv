@@ -7,7 +7,7 @@ public class Ship extends Unit
   protected int movX,movY;
   protected boolean endDestination;
   
- public void dock(){endDestination = true;}
+ public void dock(){endDestination = true; alive = false;}
  
  public Ship(float xp, float yp, boolean a, int s)
   {
