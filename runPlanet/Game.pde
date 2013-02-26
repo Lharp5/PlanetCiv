@@ -5,6 +5,7 @@
 
 public class Game{
   public int time;
+  private int disaster; //RNG for disaster
   
   public Unit p[] = new Unit [10000];
   int numUnits;
@@ -46,7 +47,18 @@ public class Game{
   }
   
   public void gameUpdate() {  
-    background(0);   
+    background(0);
+    
+    if(time%400==0){ 
+      disaster = (int)random(1,9);
+      println(disaster);
+      if(disaster == 3)
+        quake();
+      else if(disaster ==6)
+        asteroid();
+      else
+        hud.eventStatus = "";
+    }
            
     //looping to update game visuals                 
     for (int i=0; i<numUnits; i++) {
@@ -97,6 +109,26 @@ public class Game{
   
       mouseTracker();  
       time++;
+  }
+  
+  private void asteroid(){ //natural disaster asteriod
+    int thisPlanet = (int)random(1,((Planet)p[0]).getAllPopNum());
+    for(int i=0; i<numUnits; i++){
+       if((p[i] instanceof Planet) &&((Planet) p[i]).getPlanetNum()==thisPlanet){
+         resources-=((Planet)p[i]).asteroidDamage();
+         hud.eventStatus = "Planet: "+((Planet)p[i]).getPlanetNum() + " Has been hit by an Asteroid";
+       }
+    }
+  }
+  
+  private void quake(){ //natural disaster quake
+    int thisPlanet = (int) random(1,((Planet)p[0]).getAllPopNum());
+    for(int i=0; i<numUnits; i++){
+       if((p[i] instanceof Planet) &&((Planet) p[i]).getPlanetNum()==thisPlanet){
+         resources-=((Planet)p[i]).quakeDamage();
+         hud.eventStatus = "Planet: "+((Planet)p[i]).getPlanetNum() + " Has been hit by an Quake";
+       }       
+    }
   }
   
   //this is for movement of the field of view.
@@ -167,19 +199,19 @@ public class Game{
   
   //this is used to populate planets.
   public Boolean checkDestination(int mx, int my) {    
-      for (int i=0; i<numUnits; i++) {    
-            if (p[i] instanceof Planet) {     
-                    if (dist(mx, my, p[i].getX(), p[i].getY())<p[i].getSize()/2) {
-                        if(((Planet)p[i]).isPopulated())
-                          return false;
-                        else{            
-                              ((Planet) p[i]).populate();       
-                                      return true;
-                        }
-                    }
-            }
-      }  
-        return false;
+    for (int i=0; i<numUnits; i++) {    
+      if (p[i] instanceof Planet) {     
+        if (dist(mx, my, p[i].getX(), p[i].getY())<p[i].getSize()/2) {
+          if(((Planet)p[i]).isPopulated())
+            return false;
+          else{            
+                ((Planet) p[i]).populate();       
+                        return true;
+          }
+        }
+    }
+  }  
+  return false;
   }
 }
   

@@ -3,7 +3,7 @@
 * extends units
 */
 
-protected static int PLANET_NUMBER = 1;
+public static int PLANET_NUMBER = 1;
 
 public class Planet extends Unit
 {
@@ -21,11 +21,14 @@ public class Planet extends Unit
   protected int decay;
   protected int population; //need a menu display for this  
   
+  protected int planetNum;
+  
   protected boolean populated;
   public boolean isPopulated(){ return populated;}
   public int getResources() {return resources; }
+  public int  getPlanetNum() {return planetNum; }
   
-  protected int planetNum;
+  public int getAllPopNum() { return PLANET_NUMBER; } //returns all the planets populated cant do static methods FUCK YOU PROCESSING.  
   
   public Planet(float xp, float yp, boolean a, int r, int s)
   {
@@ -38,7 +41,9 @@ public class Planet extends Unit
     research=0;
     decay=0;
     population=0;
-  }
+  }  
+  
+  
   
   public void update()
   {
@@ -89,6 +94,24 @@ public int buildResearch(int r){
   }
   else
     return r;
+}
+
+public int asteroidDamage(){
+  if(defenses<2)
+     return round(resources*1.5);
+  else if(defenses<4)
+    return resources;
+  else
+    return resources/2;    
+}
+
+public int quakeDamage(){
+  if(defenses<1)
+     return round(resources*1.5);
+  else if(defenses<3)
+    return resources;
+  else
+    return resources/2;    
 }
 
 
