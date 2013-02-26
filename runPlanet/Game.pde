@@ -63,7 +63,7 @@ public class Game{
     numUnits=13;
     
     ///resource recruitment testing
-    resources=100000000;
+    resources=0;
     barrierX=width/2;
     barrierY=height/2;
   }
@@ -75,77 +75,82 @@ public class Game{
       winCondition();
       
     else{
-      background(0);
-      //knowing the max range of planets
-      noFill();
-      stroke(255,0,0);
-      strokeWeight(10);
-      ellipse(barrierX,barrierY,4000,4000);
+      if(time>72000)
+        loseCondition();
       
-      strokeWeight(1);
-      
-      if(time%400==0){ 
-        disaster = (int)random(1,9);
-        println(disaster);
-        if(disaster == 3)
-          quake();
-        else if(disaster ==6)
-          asteroid();
-        else
-          hud.eventStatus = "";
-      }
-             
-      //looping to update game visuals                 
-      for (int i=0; i<numUnits; i++) {
-      p[i].update();
-      if(p[i] instanceof Planet){
-        if(((Planet) p[i]).isPopulated()){
-          if(time%300==0)
-            resources+=((Planet) p[i]).getResources();
+      else {
+        background(0);
+        //knowing the max range of planets
+        noFill();
+        stroke(255,0,0);
+        strokeWeight(10);
+        ellipse(barrierX,barrierY,4000,4000);
+        
+        strokeWeight(1);
+        
+        if(time%400==0){ 
+          disaster = (int)random(1,9);
+          println(disaster);
+          if(disaster == 3)
+            quake();
+          else if(disaster ==6)
+            asteroid();
+          else
+            hud.eventStatus = "";
         }
-      }
-      }
-      
-      //looping to update array of objects, cycling out dead ones
-      for(int i=0; i<numUnits; i++) {
-        if(p[i] instanceof Ship){
-          if (((Ship)p[i]).getDist() <= 1) {
-            if(checkDestination((int)p[i].getX(),(int)p[i].getY()))
-              ((Ship) p[i]).dock();
+               
+        //looping to update game visuals                 
+        for (int i=0; i<numUnits; i++) {
+        p[i].update();
+        if(p[i] instanceof Planet){
+          if(((Planet) p[i]).isPopulated()){
+            if(time%300==0)
+              resources+=((Planet) p[i]).getResources();
           }
         }
-        if(!p[i].isAlive()){
-          p[i]=p[numUnits-1];
-          numUnits--;
         }
-      }
-    
-      ///*
-      if (clicked) {    
-          fill(255, 0);    
-          stroke(255, 255);    
-          rect(boundingX1, boundingY1, boundingX2 - boundingX1, boundingY2 - boundingY1);    
-          int difX = boundingX2 - boundingX1;    
-          int difY = boundingY2 - boundingY1;    
-          if ((difX > 5 || difX < -5) || (difY > 5 || difY < -5)) {      
-              selectionBox = true;
-            } 
-            else {      
-                  selectionBox = false;
-            }
-      }
-                                  
-        //looping to show menu on top of goings on in background.
-        for (int i = 0; i < numUnits; i++) {    
-          if (p[i] instanceof Planet) {
-            if((((Planet) p[i]).getCity()>=2)&&!(((Planet)p[i]).counted)){
-              planetsComplete++;
-              ((Planet) p[i]).counted=true;
-            }      
-            if (p[i].menuDisplay) {        
-              ((Planet)p[i]).displayMenu();
+        
+        //looping to update array of objects, cycling out dead ones
+        for(int i=0; i<numUnits; i++) {
+          if(p[i] instanceof Ship){
+            if (((Ship)p[i]).getDist() <= 1) {
+              if(checkDestination((int)p[i].getX(),(int)p[i].getY()))
+                ((Ship) p[i]).dock();
             }
           }
+          if(!p[i].isAlive()){
+            p[i]=p[numUnits-1];
+            numUnits--;
+          }
+        }
+      
+        ///*
+        if (clicked) {    
+            fill(255, 0);    
+            stroke(255, 255);    
+            rect(boundingX1, boundingY1, boundingX2 - boundingX1, boundingY2 - boundingY1);    
+            int difX = boundingX2 - boundingX1;    
+            int difY = boundingY2 - boundingY1;    
+            if ((difX > 5 || difX < -5) || (difY > 5 || difY < -5)) {      
+                selectionBox = true;
+              } 
+              else {      
+                    selectionBox = false;
+              }
+        }
+                                    
+          //looping to show menu on top of goings on in background.
+          for (int i = 0; i < numUnits; i++) {    
+            if (p[i] instanceof Planet) {
+              if((((Planet) p[i]).getCity()>=2)&&!(((Planet)p[i]).counted)){
+                planetsComplete++;
+                ((Planet) p[i]).counted=true;
+              }      
+              if (p[i].menuDisplay) {        
+                ((Planet)p[i]).displayMenu();
+              }
+            }
+      }
     }
   }    
       // this should always go last.
@@ -271,5 +276,14 @@ public class Game{
     textSize(20);
     textAlign(CENTER);
     text("Congrats you won!!!",width/2, height/2);
+  }
+  
+  public void loseCondition(){
+    fill(0);
+    rect(width/4,height/4,width*2/4,height*2/4);
+    fill(255);
+    textSize(20);
+    textAlign(CENTER);
+    text("You ran out of Time, Nice Try!!!",width/2, height/2);
   }
 }
