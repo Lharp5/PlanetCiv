@@ -15,10 +15,5 @@ public class MedPlanet extends Planet
     fill(0,255,0);
     noStroke();
     super.update();
-    
-    if(populated == true){
-      fill(50);
-      ellipse(xpos, ypos, 30,30);
-    }
   }
 }
