@@ -85,6 +85,10 @@ public class Game{
     
     //looping to update array of objects, cycling out dead ones
     for(int i=0; i<numUnits; i++) {
+      if(p[i] instanceof Ship){
+        if(checkDestination((int)p[i].getX(),(int)p[i].getY()))
+          ((Ship) p[i]).dock();
+      }
       if(!p[i].isAlive()){
         p[i]=p[numUnits-1];
         numUnits--;
@@ -222,7 +226,7 @@ public class Game{
             return false;
           else{            
                 ((Planet) p[i]).populate();       
-                        return true;
+                return true;
           }
         }
     }
