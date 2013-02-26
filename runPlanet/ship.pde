@@ -6,6 +6,9 @@ public class Ship extends Unit
 {
   protected int movX,movY;
   protected boolean endDestination;
+  protected int distance;
+  
+  public int getDist() { return distance; }
   
  public void dock(){endDestination = true; alive = false;}
  
@@ -72,6 +75,7 @@ public class Ship extends Unit
       movY=my;
       float difX = movX - xpos;
       float difY = movY - ypos;
+      distance = (int)sqrt((difX * difX) + (difY * difY));
       float xSpeed = difX / sqrt((difX * difX) + (difY * difY));
       float ySpeed = difY / sqrt((difX * difX) + (difY * difY));
       
