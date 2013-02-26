@@ -15,5 +15,9 @@ public class SmallPlanet extends Planet
     fill(0,0,255);
     noStroke();
     super.update();
+    if(populated == true){
+      fill(50);
+      ellipse(xpos, ypos, 30,30);
+    }
   }
 }

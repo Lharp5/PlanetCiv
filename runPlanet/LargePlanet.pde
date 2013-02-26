@@ -16,5 +16,9 @@ public class LargePlanet extends Planet
     fill(255,0,0);
     noStroke();
     super.update();
+    if(populated == true){
+      fill(50);
+      ellipse(xpos, ypos, 30,30);
+    }
   }
 }
