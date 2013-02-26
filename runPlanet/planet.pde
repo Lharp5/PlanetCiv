@@ -55,6 +55,8 @@ public class Planet extends Unit
       planetNum = PLANET_NUMBER;
       PLANET_NUMBER ++;
     }
+    
+    
 }
 
 public int buildCity(int r){
