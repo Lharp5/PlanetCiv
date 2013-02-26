@@ -25,15 +25,15 @@ class HeadsUpDisplay {
     
     beginShape();
     vertex(0, -10);
-    vertex(200, -10);
-    vertex(175, 40);
+    vertex(250, -10);
+    vertex(225, 40);
     vertex(0, 40);
     endShape();
     
     beginShape();
     vertex(width, -10);
-    vertex(width - 200, -10);
-    vertex(width - 175, 40);
+    vertex(width - 250, -10);
+    vertex(width - 225, 40);
     vertex(width, 40);
     endShape();
     
