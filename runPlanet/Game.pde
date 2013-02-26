@@ -86,8 +86,10 @@ public class Game{
     //looping to update array of objects, cycling out dead ones
     for(int i=0; i<numUnits; i++) {
       if(p[i] instanceof Ship){
-        if(checkDestination((int)p[i].getX(),(int)p[i].getY()))
-          ((Ship) p[i]).dock();
+        if (((Ship)p[i]).getDist() <= 1) {
+          if(checkDestination((int)p[i].getX(),(int)p[i].getY()))
+            ((Ship) p[i]).dock();
+        }
       }
       if(!p[i].isAlive()){
         p[i]=p[numUnits-1];
@@ -133,6 +135,7 @@ public class Game{
        if((p[i] instanceof Planet) &&((Planet) p[i]).getPlanetNum()==thisPlanet){
          resources-=((Planet)p[i]).asteroidDamage();
          hud.eventStatus = "Planet "+((Planet)p[i]).getPlanetNum() + " Has been hit by an Asteroid";
+         hud.statusAlpha = 255;
        }
     }
   }
@@ -143,6 +146,7 @@ public class Game{
        if((p[i] instanceof Planet) &&((Planet) p[i]).getPlanetNum()==thisPlanet){
          resources-=((Planet)p[i]).quakeDamage();
          hud.eventStatus = "Planet: "+((Planet)p[i]).getPlanetNum() + " Has been hit by a Quake";
+         hud.statusAlpha = 255;
        }       
     }
   }
