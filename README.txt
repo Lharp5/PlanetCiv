@@ -1,10 +1,8 @@
 S.P.A.C.E
 _________
 
-I am going to add tasks on Github For things to do.
+This build is ready for the playtesting
 
-If you have any questions on the methods or anything lemmie know.
+All that needs to be done is the manual
 
-I dont think we necessarily need artwork/music for the playtest just the functionality.
-
-If you guys haven't already seen, the prototype is due Wednesday. 
+and a status updaate thing he talked about?
