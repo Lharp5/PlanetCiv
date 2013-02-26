@@ -91,7 +91,7 @@ public class Game{
       }
     }
   
-    /*
+    ///*
     if (clicked) {    
         fill(255, 0);    
         stroke(255, 255);    
@@ -104,7 +104,7 @@ public class Game{
           else {      
                 selectionBox = false;
           }
-                                }  */
+                                } // */
                                 
       //looping to show menu on top of goings on in background.
       for (int i = 0; i < numUnits; i++) {    
@@ -190,6 +190,8 @@ public class Game{
   }
   barrierX+=xval;
   barrierY+=yval;
+  boundingX1+=xval;
+  boundingY1+=yval;
   }
   
   public void recruitSettler(float x, float y){
@@ -228,5 +230,3 @@ public class Game{
   return false;
   }
 }
-  
-  
