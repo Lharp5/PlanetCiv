@@ -4,6 +4,7 @@ class HeadsUpDisplay {
   int resources;
   String eventStatus = "";
   float rotation = 0;
+  public float statusAlpha = 0;
   
   public HeadsUpDisplay() {
     time = 0;
@@ -44,8 +45,10 @@ class HeadsUpDisplay {
     text("Time: " + time / 3600 + "." + (time / 60) % 60 + "." + (time / 10) % 6, 15, 25);
     textAlign(RIGHT);
     text("Resources: " + resources, width - 15, 25);
+    fill(255, statusAlpha);
     textAlign(CENTER);
     text(eventStatus, width / 2, height - 15);
+    statusAlpha -= 1;
     
   }
 }
