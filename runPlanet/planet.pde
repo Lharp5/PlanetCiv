@@ -23,10 +23,14 @@ public class Planet extends Unit
   
   protected int planetNum;
   
+  //used to count towards in condition
+  public boolean counted;
+  
   protected boolean populated;
   public boolean isPopulated(){ return populated;}
   public int getResources() {return resources; }
   public int  getPlanetNum() {return planetNum; }
+  public int getCity() {return city;}
   
   public int getAllPopNum() { return PLANET_NUMBER; } //returns all the planets populated cant do static methods FUCK YOU PROCESSING.  
   
@@ -41,6 +45,7 @@ public class Planet extends Unit
     research=0;
     decay=0;
     population=0;
+    counted=false;
   }  
   
   

@@ -6,6 +6,7 @@
 public class Game{
   public int time;
   private int disaster; //RNG for disaster
+  private int planetsComplete;
   
   public Unit p[] = new Unit [10000];
   int numUnits;
@@ -34,94 +35,119 @@ public class Game{
   
   
   public Game(){
+    planetsComplete=0;
     time=0;
     background(0);  
-    p[0] = new MedPlanet(-width, 0, true, 10, (int)random(MMIN, MMAX));  
-    p[1] = new LargePlanet(-width/2, -height/2, true, 10, (int)random(LMIN, LMAX));  
-    p[2] = new SmallPlanet(width/2, height/2, true, 10, (int)random(SMIN, SMAX));  
-    p[3] = new Ship(width/1.5, height/1.5, true, SHIP_SIZE);
-    p[4] = new SmallPlanet(-200,height/2, true, 10, (int)random(SMIN,SMAX));
-    p[5] = new SmallPlanet (width*2/3,-height, true, 10, (int)random(SMIN, SMAX));
-    p[6] = new MedPlanet (width/2, height*2, true, 10, (int)random(MMIN,MMAX));
-    numUnits=7;
+      
+    //large planets
+    p[0] = new LargePlanet(0, -height*2, true, 10, (int)random(LMIN, LMAX));
+    p[1] = new LargePlanet(width*2,height*2,true,10,(int)random(LMIN,LMAX));
+  
+    //medium planets
+    p[2] = new MedPlanet(-width, 0, true, 10, (int)random(MMIN, MMAX));
+    p[3] = new MedPlanet (width, height*2, true, 10, (int)random(MMIN,MMAX));
+    p[4] = new MedPlanet(width,-height*2,true,10,(int)random(MMIN,MMAX));
+    p[5] = new MedPlanet(width*2,-height/2,true,10,(int)random(MMIN,MMAX));
+    
+    //small planets
+    p[6] = new SmallPlanet(width/2, height/2, true, 10, (int)random(SMIN, SMAX));  
+    p[7] = new SmallPlanet(-100,-400, true, 10, (int)random(SMIN,SMAX));
+    p[8] = new SmallPlanet (width*2/3,-height, true, 10, (int)random(SMIN, SMAX));
+    p[9] = new SmallPlanet(-width,-height,true,10,(int)random(SMIN,SMAX));
+    p[10] = new SmallPlanet(0,height*2,true,10,(int)random(SMIN,SMAX));
+    p[11] = new SmallPlanet(-width,height*1.5,true,10,(int)random(SMIN,SMAX));
+   
+    //starting ship
+    p[12] = new Ship(width/1.5, height/1.5, true, SHIP_SIZE);
+    
+    numUnits=13;
     
     ///resource recruitment testing
-    resources=0;
+    resources=100000000;
     barrierX=width/2;
     barrierY=height/2;
   }
   
   public void gameUpdate() {  
-    background(0);
-    //knowing the max range of planets
-    noFill();
-    stroke(255,0,0);
-    strokeWeight(10);
-    ellipse(barrierX,barrierY,3000,3000);
     
-    strokeWeight(1);
     
-    if(time%400==0){ 
-      disaster = (int)random(1,9);
-      println(disaster);
-      if(disaster == 3)
-        quake();
-      else if(disaster ==6)
-        asteroid();
-      else
-        hud.eventStatus = "";
-    }
-           
-    //looping to update game visuals                 
-    for (int i=0; i<numUnits; i++) {
-    p[i].update();
-    if(p[i] instanceof Planet){
-      if(((Planet) p[i]).isPopulated()){
-        if(time%300==0)
-          resources+=((Planet) p[i]).getResources();
+    if(planetsComplete>=3&&resources>=50000)
+      winCondition();
+      
+    else{
+      background(0);
+      //knowing the max range of planets
+      noFill();
+      stroke(255,0,0);
+      strokeWeight(10);
+      ellipse(barrierX,barrierY,4000,4000);
+      
+      strokeWeight(1);
+      
+      if(time%400==0){ 
+        disaster = (int)random(1,9);
+        println(disaster);
+        if(disaster == 3)
+          quake();
+        else if(disaster ==6)
+          asteroid();
+        else
+          hud.eventStatus = "";
       }
-    }
-    }
-    
-    //looping to update array of objects, cycling out dead ones
-    for(int i=0; i<numUnits; i++) {
-      if(p[i] instanceof Ship){
-        if (((Ship)p[i]).getDist() <= 1) {
-          if(checkDestination((int)p[i].getX(),(int)p[i].getY()))
-            ((Ship) p[i]).dock();
+             
+      //looping to update game visuals                 
+      for (int i=0; i<numUnits; i++) {
+      p[i].update();
+      if(p[i] instanceof Planet){
+        if(((Planet) p[i]).isPopulated()){
+          if(time%300==0)
+            resources+=((Planet) p[i]).getResources();
         }
       }
-      if(!p[i].isAlive()){
-        p[i]=p[numUnits-1];
-        numUnits--;
       }
-    }
-  
-    ///*
-    if (clicked) {    
-        fill(255, 0);    
-        stroke(255, 255);    
-        rect(boundingX1, boundingY1, boundingX2 - boundingX1, boundingY2 - boundingY1);    
-        int difX = boundingX2 - boundingX1;    
-        int difY = boundingY2 - boundingY1;    
-        if ((difX > 5 || difX < -5) || (difY > 5 || difY < -5)) {      
-            selectionBox = true;
-          } 
-          else {      
-                selectionBox = false;
+      
+      //looping to update array of objects, cycling out dead ones
+      for(int i=0; i<numUnits; i++) {
+        if(p[i] instanceof Ship){
+          if (((Ship)p[i]).getDist() <= 1) {
+            if(checkDestination((int)p[i].getX(),(int)p[i].getY()))
+              ((Ship) p[i]).dock();
           }
-                                } // */
-                                
-      //looping to show menu on top of goings on in background.
-      for (int i = 0; i < numUnits; i++) {    
-            if (p[i] instanceof Planet) {      
-                          if (p[i].menuDisplay) {        
-                                    ((Planet)p[i]).displayMenu();
-                }
+        }
+        if(!p[i].isAlive()){
+          p[i]=p[numUnits-1];
+          numUnits--;
+        }
+      }
+    
+      ///*
+      if (clicked) {    
+          fill(255, 0);    
+          stroke(255, 255);    
+          rect(boundingX1, boundingY1, boundingX2 - boundingX1, boundingY2 - boundingY1);    
+          int difX = boundingX2 - boundingX1;    
+          int difY = boundingY2 - boundingY1;    
+          if ((difX > 5 || difX < -5) || (difY > 5 || difY < -5)) {      
+              selectionBox = true;
+            } 
+            else {      
+                  selectionBox = false;
             }
-  }
-          
-          
+      }
+                                  
+        //looping to show menu on top of goings on in background.
+        for (int i = 0; i < numUnits; i++) {    
+          if (p[i] instanceof Planet) {
+            if((((Planet) p[i]).getCity()>=2)&&!(((Planet)p[i]).counted)){
+              planetsComplete++;
+              ((Planet) p[i]).counted=true;
+            }      
+            if (p[i].menuDisplay) {        
+              ((Planet)p[i]).displayMenu();
+            }
+          }
+    }
+  }    
       // this should always go last.
       hud.update(time, resources);
   
@@ -236,5 +262,14 @@ public class Game{
     }
   }  
   return false;
+  }
+  
+  public void winCondition(){
+    fill(0);
+    rect(width/4,height/4,width*2/4,height*2/4);
+    fill(255);
+    textSize(20);
+    textAlign(CENTER);
+    text("Congrats you won!!!",width/2, height/2);
   }
 }
