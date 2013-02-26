@@ -72,9 +72,7 @@ void mousePressed()
         else if(mouseButton == RIGHT){            
             if(g.p[i] instanceof Ship){
               if(g.p[i].selected){
-                if(g.checkDestination(mouseX,mouseY))
-                  ((Ship) g.p[i]).dock();
-                ((Ship) g.p[i]).move(mouseX,mouseY);
+                  ((Ship) g.p[i]).move(mouseX,mouseY);
               }
             }
             else if(g.p[i] instanceof Planet){
