@@ -59,8 +59,9 @@ public class Game{
    
     //starting ship
     p[12] = new Ship(width/1.5, height/1.5, true, SHIP_SIZE);
+    p[13] = new ExploreShip (width/1.5+75, height/1.5+75, true, SHIP_SIZE);
     
-    numUnits=13;
+    numUnits=14;
     
     ///resource recruitment testing
     resources=0;
@@ -110,12 +111,17 @@ public class Game{
         }
         }
         
-        //looping to update array of objects, cycling out dead ones
+        //looping to update array of objects, cycling out dead ones and checking for special cases for ships
         for(int i=0; i<numUnits; i++) {
           if(p[i] instanceof Ship){
             if (((Ship)p[i]).getDist() <= 1) {
               if(checkDestination((int)p[i].getX(),(int)p[i].getY()))
                 ((Ship) p[i]).dock();
+            }
+          }
+          if(p[i] instanceof ExploreShip){
+            if (((ExploreShip)p[i]).getDist() <= 1) {
+              removeFog((int)p[i].getX(),(int)p[i].getY());
             }
           }
           if(!p[i].isAlive()){
@@ -242,15 +248,15 @@ public class Game{
   }
   
   //method for the upcoming explorer ship
-  /*
-    public void recruitSettler(int x, int y){
+  
+    public void recruitExplore(float x, float y){
     if(resources>EXPLORE_COST){
-      resources-=EXPLORE_COST);
+      resources-=EXPLORE_COST;
       p[numUnits] = new ExploreShip(x,y,true, 25);
       numUnits++;
     }
   }
-  */
+
   
   //this is used to populate planets.
   public Boolean checkDestination(int mx, int my) {    
@@ -267,6 +273,11 @@ public class Game{
     }
   }  
   return false;
+  }
+  
+  public void removeFog(int mx, int my){
+    System.out.println("here");
+    System.out.println();    
   }
   
   public void winCondition(){
