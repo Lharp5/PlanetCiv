@@ -57,11 +57,24 @@ public class Game{
     p[10] = new SmallPlanet(0,height*2,true,10,(int)random(SMIN,SMAX));
     p[11] = new SmallPlanet(-width,height*1.5,true,10,(int)random(SMIN,SMAX));
    
-    //starting ship
-    p[12] = new Ship(width/1.5, height/1.5, true, SHIP_SIZE);
-    p[13] = new ExploreShip (width/1.5+75, height/1.5+75, true, SHIP_SIZE);
+    numUnits=12;
     
-    numUnits=14;
+    //creating the fog over planets.
+    for(int i=0; i<14; i++){
+      for(int j=0; j<16; j++){
+         p[numUnits] = new Fog(-1000+250*i, -1500+250*j);
+         numUnits++;        
+      }
+    }
+    
+    //starting ship
+    p[numUnits] = new Ship(width/1.5, height/1.5, true, SHIP_SIZE);
+    numUnits++;
+    p[numUnits] = new ExploreShip (width/1.5+75, height/1.5+75, true, SHIP_SIZE);
+    numUnits++;
+    
+    
+    
     
     ///resource recruitment testing
     resources=0;
@@ -91,7 +104,6 @@ public class Game{
         
         if(time%400==0){ 
           disaster = (int)random(1,9);
-          println(disaster);
           if(disaster == 3)
             quake();
           else if(disaster ==6)
@@ -275,9 +287,15 @@ public class Game{
   return false;
   }
   
+  //not exactly accurate to remove fog, but makes it work.
   public void removeFog(int mx, int my){
-    System.out.println("here");
-    System.out.println();    
+    for (int i=0; i<numUnits; i++) {    
+      if (p[i] instanceof Fog) {     
+        if (dist(mx, my, p[i].getX(), p[i].getY())<p[i].getSize()) {
+         p[i].die();
+        }
+    }
+  } 
   }
   
   public void winCondition(){

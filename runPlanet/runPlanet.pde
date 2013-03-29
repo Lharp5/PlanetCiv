@@ -36,7 +36,7 @@ void draw()
 
 void mousePressed()
 {
-  for(int i=0; i<g.numUnits; i++)  {
+  for(int i=0; i<g.numUnits; i++) {
     if(g.p[i].menuDisplay){
       if(mouseButton == LEFT){
         if((mouseX>(width / 2) + 280 &&mouseX<(width / 2) + 355)&&(mouseY>175&&mouseY<205)) //buildCity button
@@ -82,6 +82,7 @@ void mousePressed()
             else if(g.p[i] instanceof ExploreShip){
               if(g.p[i].selected){
                   ((ExploreShip) g.p[i]).move(mouseX,mouseY);
+                  g.removeFog((int)g.p[i].getX(),(int)g.p[i].getY());
               }
             }
             
