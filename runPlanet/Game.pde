@@ -114,14 +114,16 @@ public class Game{
                
         //looping to update game visuals                 
         for (int i=0; i<numUnits; i++) {
-        p[i].update();
-        if(p[i] instanceof Planet){
-          if(((Planet) p[i]).isPopulated()){
-            if(time%300==0)
-              resources+=((Planet) p[i]).getResources();
+          p[i].update();
+          if(p[i] instanceof Planet){
+            if(((Planet) p[i]).isPopulated()){
+              if(time%300==0)
+                resources+=((Planet) p[i]).getResources();
+            }
           }
         }
-        }
+        
+        miniMap();
         
         //looping to update array of objects, cycling out dead ones and checking for special cases for ships
         for(int i=0; i<numUnits; i++) {
@@ -143,8 +145,9 @@ public class Game{
         }
       
         ///*
-        if (clicked) {    
-            fill(255, 0);    
+        if (clicked) {
+            fill(255, 0);
+            //strokeWeight(1);
             stroke(255, 255);    
             rect(boundingX1, boundingY1, boundingX2 - boundingX1, boundingY2 - boundingY1);    
             int difX = boundingX2 - boundingX1;    
@@ -314,5 +317,54 @@ public class Game{
     textSize(20);
     textAlign(CENTER);
     text("You ran out of Time, Nice Try!!!",width/2, height/2);
+  }
+  
+  public void miniMap() {
+    fill(0);
+    noStroke();
+    rect(width-125, height-100, 200, 150);
+    for (int i=0; i<numUnits; i++) {
+      float x = (p[i].getX() / 15) + (width - 155);
+      float y = (p[i].getY() / 15) + (height - 122);
+      if (p[i] instanceof Planet && x > width-220 && x < width-30 && y > height - 170 && y < height-30) {
+        fill(255);
+        ellipse(x, y, p[i].getSize()/20, p[i].getSize()/20);
+      }
+    }
+    for (int i = 0; i<numUnits; i++) {
+      float x = (p[i].getX() / 15) + (width - 155);
+      float y = (p[i].getY() / 15) + (height - 122);
+      if (p[i] instanceof Fog &&  x > width-228 && x < width-22 && y > height - 178 && y < height-22) {
+        fill(0);
+        rect(x, y, 17, 17);
+      }
+    }
+    for (int i=0; i<numUnits; i++) {
+      float x = (p[i].getX() / 15) + (width - 155);
+      float y = (p[i].getY() / 15) + (height - 122);
+      if (x < width-220) {
+        x = width-220;
+      }
+      if (x > width-30) {
+        x = width-30;
+      }
+      if (y < height-170) {
+        y = height-170;
+      }
+      if (y > height-30) {
+        y = height-30;
+      }
+      if (p[i] instanceof Ship) {
+        fill(255, 0, 0);
+        ellipse(x, y, 5, 5);
+      }
+      if (p[i] instanceof ExploreShip) {
+        fill(0, 0, 255);
+        ellipse(x, y, 5, 5);
+      }
+    }
+    fill(0, 0);
+    stroke(255);
+    rect(width-125, height-100, 200, 150);
   }
 }
