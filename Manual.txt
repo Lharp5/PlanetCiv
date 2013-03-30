@@ -16,6 +16,11 @@ The size of the planet is significant as well. If a larger planet is populated, 
 
 Controls:
 
+Note: There are two types of ships, settlers(red dotted) and explorers (blue dotted)
+
+Ships function the same way except the explorer ships can discover and map the unknown universe (purple), but cannot populate planets,
+settler ships cannot remove the unknown universe but can populate planets.
+
 To select an object, click the left mouse button on the object. 
 To select multiple objects, hold the left mouse button and drag the box over the objects you wish to select. 
 To open the menu on a planet, right click the planet(Note: this is only available when the planet has been colonized).

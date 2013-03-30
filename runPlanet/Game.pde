@@ -116,6 +116,7 @@ public class Game{
         for (int i=0; i<numUnits; i++) {
           p[i].update();
           if(p[i] instanceof Planet){
+            ((Planet) p[i]).increaseDecay(time);
             if(((Planet) p[i]).isPopulated()){
               if(time%300==0)
                 resources+=((Planet) p[i]).getResources();
@@ -281,7 +282,7 @@ public class Game{
           if(((Planet)p[i]).isPopulated())
             return false;
           else{            
-                ((Planet) p[i]).populate();       
+                ((Planet) p[i]).populate(time);       
                 return true;
           }
         }
@@ -319,7 +320,10 @@ public class Game{
     text("You ran out of Time, Nice Try!!!",width/2, height/2);
   }
   
+  //Nick's Minimap
+  
   public void miniMap() {
+    rectMode(CENTER); //to put the origin of the radar
     fill(0);
     noStroke();
     rect(width-125, height-100, 200, 150);
@@ -366,5 +370,6 @@ public class Game{
     fill(0, 0);
     stroke(255);
     rect(width-125, height-100, 200, 150);
+    rectMode(CORNER);
   }
 }

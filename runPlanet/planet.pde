@@ -19,7 +19,13 @@ public class Planet extends Unit
   protected int city, defenses, research;
   protected int resources;
   protected int decay;
-  protected int population; //need a menu display for this  
+  protected int population; //need a menu display for this
+  
+  //used to calculate decahy
+  protected int colonized;
+  
+  //time to tick for decay rate
+  protected int decayTick;
   
   protected int planetNum;
   
@@ -46,9 +52,9 @@ public class Planet extends Unit
     decay=0;
     population=0;
     counted=false;
+    colonized=-1;
+    decayTick=540;
   }  
-  
-  
   
   public void update()
   {
@@ -56,15 +62,29 @@ public class Planet extends Unit
     {
       ellipse(xpos,ypos,size,size);
     }
+    else{
+      fill(255);
+      ellipse(xpos,ypos,size,size);
+    }
   }
   
   
-  public void populate(){
+  public void populate(int t){
     if(!populated) {
       populated=true;
       planetNum = PLANET_NUMBER;
       PLANET_NUMBER ++;
+      colonized=t;
     }
+}
+
+public void increaseDecay(int t){
+  if(populated){
+  if(t%(decayTick)==0)
+    decay++;
+    if(decay==100)
+    die();
+  }
 }
 
 public int buildCity(int r){
@@ -72,8 +92,8 @@ public int buildCity(int r){
   if(r>=CITY_PRICE[city]&&city<CITY_LIST.length-1){    
     city++;
     resources*=1.5;
-    return r-=CITY_PRICE[c];
-    
+    decayTick*=0.75;
+    return r-=CITY_PRICE[c];    
   }
   else
     return r;
@@ -94,6 +114,7 @@ public int buildResearch(int r){
   int re=research;
   if(r>=RESEARCH_PRICE[research]&&research<RESEARCH_LIST.length-1){
     research++;
+    decayTick+=decayTick*0.6;
     return r-=RESEARCH_PRICE[re];
     
   }

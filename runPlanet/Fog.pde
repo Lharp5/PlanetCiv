@@ -11,6 +11,8 @@ public class Fog extends Unit {
     fill(5,1,7);
     if(alive == true)
       rect(xpos,ypos,size,size);
+      rectMode(CORNER);
   }
+  
     
   }
