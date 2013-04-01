@@ -7,7 +7,8 @@ public class Ship extends Unit
   protected int movX,movY;
   protected boolean endDestination;
   protected int distance;
-  
+  PImage sprite = loadImage("Settler.png");
+  PImage selSprite = loadImage("SettlerSelected.png");
   public int getDist() { return distance; }
   
  public void dock(){endDestination = true; alive = false;}
@@ -23,6 +24,7 @@ public class Ship extends Unit
   
   public void update()
   {
+    imageMode(CENTER);
     
     if(movX!=xpos||movY!=ypos){
       move(movX,movY);
@@ -32,15 +34,11 @@ public class Ship extends Unit
       
     if(alive){
       if(selected)      
-        fill(255);
+        image(selSprite, xpos, ypos);
       else      
-        fill(150);
-      noStroke();
-      ellipse(xpos,ypos,size,size);
-      fill(255,0,0);
-      stroke(0, 255);
-      ellipse(xpos,ypos,size/5,size/5);
+        image(sprite, xpos, ypos);
     }
+    imageMode(CORNER);
   }
   
   public void change(int updateX, int updateY){

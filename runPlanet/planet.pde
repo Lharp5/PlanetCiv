@@ -7,12 +7,12 @@ public static int PLANET_NUMBER = 1;
 
 public class Planet extends Unit
 {
-  protected final String [] CITY_LIST = {"Settlement","Space Port","Lunar City","Galactic Hub","Universal Command Center"};
+  protected final String [] CITY_LIST = {"","Settlement","Space Port","Lunar City","Galactic Hub","Universal Com. Cen."};
   protected final String [] DEFENSE_LIST = {"none","Quake Resister"," Asteroid Inteceptor","Quake Stabalizer","Atmospheric Shield"};
   protected final String [] RESEARCH_LIST = {"none","Greenhouse","Laser Tools","Renewable Energy","Chemical Restructuring"};
   
   //following will be adjustable in each individual planet class eventually.
-  protected final int [] CITY_PRICE = {10000,25000,50000,100000,0};
+  protected final int [] CITY_PRICE = {0,10000,25000,50000,100000,0};
   protected final int [] DEFENSE_PRICE = {2000,5000,11000,20000,0};
   protected final int [] RESEARCH_PRICE = {5000,15000,30000,75000,0};
   
@@ -58,14 +58,6 @@ public class Planet extends Unit
   
   public void update()
   {
-    if(alive)
-    {
-      ellipse(xpos,ypos,size,size);
-    }
-    else{
-      fill(255);
-      ellipse(xpos,ypos,size,size);
-    }
   }
   
   
@@ -75,6 +67,7 @@ public class Planet extends Unit
       planetNum = PLANET_NUMBER;
       PLANET_NUMBER ++;
       colonized=t;
+      city++;
     }
 }
 

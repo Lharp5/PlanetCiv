@@ -77,7 +77,7 @@ public class Game{
     
     
     ///resource recruitment testing
-    resources=0;
+    resources=1000000;
     barrierX=width/2;
     barrierY=height/2;
   }

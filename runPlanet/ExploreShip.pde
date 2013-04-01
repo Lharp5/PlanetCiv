@@ -8,6 +8,9 @@ public class ExploreShip extends Unit
   protected boolean endDestination;
   protected int distance;
   
+  PImage sprite = loadImage("Explorer.png");
+  PImage selSprite = loadImage("ExplorerSelected.png");
+  
   public int getDist() { return distance; }
   
  public void dock(){endDestination = true; alive = false;}
@@ -23,7 +26,7 @@ public class ExploreShip extends Unit
   
   public void update()
   {
-    
+    imageMode(CENTER);
     if(movX!=xpos||movY!=ypos){
       move(movX,movY);
       }
@@ -32,15 +35,11 @@ public class ExploreShip extends Unit
       
     if(alive){
       if(selected)      
-        fill(255);
+        image(selSprite, xpos, ypos);
       else      
-        fill(150);
-      noStroke();
-      ellipse(xpos,ypos,size,size);
-      fill(0,0,255);
-      stroke(0, 255);
-      ellipse(xpos,ypos,size/5,size/5);
+        image(sprite, xpos, ypos);
     }
+    imageMode(CORNER);
   }
   
   public void change(int updateX, int updateY){
