@@ -10,6 +10,12 @@ Unit p[] = new Unit [10000];
 int numUnits;
 */
 
+import ddf.minim.*;
+import ddf.minim.signals.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+
+private boolean startGame;
 
 private int boundingX1 = 0;
 private int boundingX2 = 0;
@@ -19,21 +25,37 @@ private boolean selectionBox = false;
 private boolean clicked = false;
 
 Game g;
+TitleScreen t;
 
 void setup()
 {
   size(1000,650);
+  startGame=false;
   
-  
-g = new Game();
+  g = new Game();
+  t = new TitleScreen();
+  t.minim= new Minim(this);
+  t.vo=t.minim.loadFile("VoiceOver.wav");
+  t.ambiance=t.minim.loadFile("161615__keinzweiter__deep-space.aiff");  
+  t.input = t.minim.getLineIn();
 }
 
 void draw()
 {
-  g.gameUpdate();
+  if(!startGame)
+    t.titleUpdate();
+  else
+    g.gameUpdate();
 }
 
-
+  void stop()
+  {
+    t.vo.close();
+    t.ambiance.close();
+    t.input.close();
+    t.minim.stop();
+    super.stop();
+  }
 void mousePressed()
 {
   for(int i=0; i<g.numUnits; i++) {
@@ -135,4 +157,9 @@ void mouseReleased()
     boundingY2 = 0;
     clicked = false;
   }
+}
+
+void keyPressed(){
+  if(key == ' ')
+    startGame = true;
 }

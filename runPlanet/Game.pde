@@ -85,7 +85,7 @@ public class Game{
   public void gameUpdate() {  
     
     
-    if(planetsComplete>=3&&resources>=50000)
+    if(planetsComplete>=3&&resources>=150000)
       winCondition();
       
     else{
