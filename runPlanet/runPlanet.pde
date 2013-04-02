@@ -160,6 +160,12 @@ void mouseReleased()
 }
 
 void keyPressed(){
-  if(key == ' ')
+  if(key == ' '){
+    if(!startGame){
+      t.vo.close();
+      t.ambiance.close();
+      t.input.close();
+    }
     startGame = true;
+  }
 }
