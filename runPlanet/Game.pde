@@ -135,9 +135,9 @@ public class Game{
             }
           }
           if(p[i] instanceof ExploreShip){
-            if (((ExploreShip)p[i]).getDist() <= 1) {
+            //if (((ExploreShip)p[i]).getDist() <= 1) {
               removeFog((int)p[i].getX(),(int)p[i].getY());
-            }
+            //}
           }
           if(!p[i].isAlive()){
             p[i]=p[numUnits-1];
