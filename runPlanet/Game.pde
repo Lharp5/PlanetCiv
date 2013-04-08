@@ -346,17 +346,17 @@ public class Game{
     for (int i=0; i<numUnits; i++) {
       float x = (p[i].getX() / 15) + (width - 155);
       float y = (p[i].getY() / 15) + (height - 122);
-      if (x < width-220) {
-        x = width-220;
+      if (x < width-215) {
+        x = width-215;
       }
-      if (x > width-30) {
-        x = width-30;
+      if (x > width-35) {
+        x = width-35;
       }
-      if (y < height-170) {
-        y = height-170;
+      if (y < height-165) {
+        y = height-165;
       }
-      if (y > height-30) {
-        y = height-30;
+      if (y > height-35) {
+        y = height-35;
       }
       if (p[i] instanceof Ship) {
         fill(255, 0, 0);
@@ -368,8 +368,18 @@ public class Game{
       }
     }
     fill(0, 0);
+    strokeWeight(5);
     stroke(255);
+    rect(width-125, height-100, 190, 140);
+    stroke(200);
     rect(width-125, height-100, 200, 150);
+    stroke(145);
+    rect(width-125, height-100, 210, 160);
+    stroke(90);
+    rect(width-125, height-100, 220, 170);
+    stroke(35);
+    rect(width-125, height-100, 230, 180);
+    strokeWeight(1);
     rectMode(CORNER);
   }
 }
