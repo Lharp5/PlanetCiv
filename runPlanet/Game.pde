@@ -40,24 +40,25 @@ public class Game{
     background(0);  
       
     //large planets
-    p[0] = new LargePlanet(0, -height*2, true, 10, (int)random(LMIN, LMAX));
-    p[1] = new LargePlanet(width*2,height*2,true,10,(int)random(LMIN,LMAX));
+    p[0] = new Planet(); //used as the default planet, to get all the planet statistics
+    p[1] = new LargePlanet(0, -height*2, true, 10, (int)random(LMIN, LMAX));
+    p[2] = new LargePlanet(width*2,height*2,true,10,(int)random(LMIN,LMAX));
   
     //medium planets
-    p[2] = new MedPlanet(-width, 0, true, 10, (int)random(MMIN, MMAX));
-    p[3] = new MedPlanet (width, height*2, true, 10, (int)random(MMIN,MMAX));
-    p[4] = new MedPlanet(width,-height*2,true,10,(int)random(MMIN,MMAX));
-    p[5] = new MedPlanet(width*2,-height/2,true,10,(int)random(MMIN,MMAX));
+    p[3] = new MedPlanet(-width, 0, true, 10, (int)random(MMIN, MMAX));
+    p[4] = new MedPlanet (width, height*2, true, 10, (int)random(MMIN,MMAX));
+    p[5] = new MedPlanet(width,-height*2,true,10,(int)random(MMIN,MMAX));
+    p[6] = new MedPlanet(width*2,-height/2,true,10,(int)random(MMIN,MMAX));
     
     //small planets
-    p[6] = new SmallPlanet(width/2, height/2, true, 10, (int)random(SMIN, SMAX));  
-    p[7] = new SmallPlanet(-100,-400, true, 10, (int)random(SMIN,SMAX));
-    p[8] = new SmallPlanet (width*2/3,-height, true, 10, (int)random(SMIN, SMAX));
-    p[9] = new SmallPlanet(-width,-height,true,10,(int)random(SMIN,SMAX));
-    p[10] = new SmallPlanet(0,height*2,true,10,(int)random(SMIN,SMAX));
-    p[11] = new SmallPlanet(-width,height*1.5,true,10,(int)random(SMIN,SMAX));
+    p[7] = new SmallPlanet(width/2, height/2, true, 10, (int)random(SMIN, SMAX));  
+    p[8] = new SmallPlanet(-100,-400, true, 10, (int)random(SMIN,SMAX));
+    p[9] = new SmallPlanet (width*2/3,-height, true, 10, (int)random(SMIN, SMAX));
+    p[10] = new SmallPlanet(-width,-height,true,10,(int)random(SMIN,SMAX));
+    p[11] = new SmallPlanet(0,height*2,true,10,(int)random(SMIN,SMAX));
+    p[12] = new SmallPlanet(-width,height*1.5,true,10,(int)random(SMIN,SMAX));
    
-    numUnits=12;
+    numUnits=13;
     
     //creating the fog over planets.
     for(int i=0; i<14; i++){
@@ -77,7 +78,7 @@ public class Game{
     
     
     ///resource recruitment testing
-    resources=1000000;
+    resources=0;
     barrierX=width/2;
     barrierY=height/2;
   }
@@ -85,7 +86,7 @@ public class Game{
   public void gameUpdate() {  
     
     
-    if(planetsComplete>=3&&resources>=150000)
+    if(planetsComplete>=3&&resources>=110000)
       winCondition();
       
     else{

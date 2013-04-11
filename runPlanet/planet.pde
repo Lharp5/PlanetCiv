@@ -54,7 +54,19 @@ public class Planet extends Unit
     counted=false;
     colonized=-1;
     decayTick=540;
-  }  
+  }
+  
+  public Planet(){
+    super(0,0,true,0);
+    decayTick=73500;
+    city=0;
+    defenses=0;
+    research=0;
+    decay=0;
+    population=0;
+    counted=false;
+    colonized=-1;
+  }
   
   public void update()
   {
@@ -85,7 +97,7 @@ public int buildCity(int r){
   if(r>=CITY_PRICE[city]&&city<CITY_LIST.length-1){    
     city++;
     resources*=1.5;
-    decayTick*=0.75;
+    decayTick*=0.7;
     return r-=CITY_PRICE[c];    
   }
   else
@@ -107,7 +119,7 @@ public int buildResearch(int r){
   int re=research;
   if(r>=RESEARCH_PRICE[research]&&research<RESEARCH_LIST.length-1){
     research++;
-    decayTick+=decayTick*0.6;
+    decayTick+=decayTick*0.69;
     return r-=RESEARCH_PRICE[re];
     
   }
